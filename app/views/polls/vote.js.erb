@@ -1,0 +1,1 @@
+$("#voting_form_<%= @poll.id %>").replaceWith('<%= j render partial: 'polls/voting_form', :locals => { :poll => @poll } %>' );

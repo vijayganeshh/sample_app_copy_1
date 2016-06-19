@@ -1,0 +1,2 @@
+$("#delete_link_<%= @poll.id %>").replaceWith("This poll has been closed");
+$("#voting_form_<%= @poll.id %>").replaceWith('<%= j render partial: 'polls/voting_form', :locals => { :poll => @poll } %>' );

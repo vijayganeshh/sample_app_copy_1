@@ -1,0 +1,6 @@
+<% if @polls_feed_items.any? %>
+  <ol class="polls">
+    <%= render @polls_feed_items %>
+  </ol>
+  <%= will_paginate @polls_feed_items %>
+<% end %>

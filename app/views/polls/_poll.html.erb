@@ -1,0 +1,18 @@
+<li id="<%= poll.id %>">
+  <%= link_to gravatar_for(poll.user, size: 50), poll.user %>
+  <span class="user"><%= link_to poll.user.name, poll.user %></span>
+  <span class="content">
+    <p>
+      <%= poll.topic %>
+      <%= render partial: 'polls/voting_form', :locals => { :poll => poll } %>
+    </p>
+  </span>
+  <span class="timestamp">
+    <% if current_user?(poll.user) && !poll.deleted? %>
+      <%= link_to "Close this Poll", poll, method: :delete,
+                                          data: { confirm: "You sure?" },
+                                          remote: true,
+                                          id: "delete_link_#{poll.id}" %>
+    <% end %>
+  </span>
+</li>

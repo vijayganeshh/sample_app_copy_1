@@ -1,0 +1,29 @@
+<%= form_tag vote_path, method: :post, remote: true, id: "voting_form_#{poll.id}" do %>
+	<%= hidden_field_tag 'poll[id]', poll.id %>
+
+	<%= render partial: 'polls/vote_option', :locals => { :poll => poll }, :collection => poll.vote_options, :as => :option %>
+	
+	<% if !poll.deleted? %>
+		<div class="row">
+		<% unless current_user.voted_for?(poll) || current_user.my_poll?(poll) %>
+		    <div class="col-md-2"><%= submit_tag 'Vote', class: 'btn btn-sm btn-primary' %></div>
+		  <% end %>
+		  <div class="col-md-7">
+		  	<span class="vote-font"><%= poll.votes_summary == 0 ? "No" : poll.votes_summary %> <%= "vote".pluralize(poll.votes_summary) %></span>
+		  	<span>-</span>
+		  	<span class="vote-font">Posted <%= time_ago_in_words(poll.created_at) %> ago.</span>
+		  	</div>
+		  <div class="col-md-3"></div>
+		</div>
+	<% else %>
+		<div class="row">
+			<div class="col-md-7">
+			  	<span class="vote-font"><%= poll.votes_summary == 0 ? "No" : poll.votes_summary %> <%= "vote".pluralize(poll.votes_summary) %></span>
+			  	<span id="result" class="vote-font"> - Final Results</span>
+		  	</div>
+			<div class="col-md-5"></div>
+		</div>
+	<% end %>
+
+
+<% end %>

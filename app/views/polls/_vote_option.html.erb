@@ -1,0 +1,11 @@
+<div class="radio">
+  <%= content_tag(:label) do %>
+    <% unless current_user.voted_for?(poll) || current_user.my_poll?(poll) || poll.deleted?%>
+      <%= radio_button_tag 'vote_option[id]', option %>
+    <% end %>
+	<%= option%>
+  <% end %>
+  <% if current_user.voted_for?(poll) || current_user.my_poll?(poll) || poll.deleted?  %>
+  	<%= visualize_votes_for option, poll %>
+  <% end %>
+</div>

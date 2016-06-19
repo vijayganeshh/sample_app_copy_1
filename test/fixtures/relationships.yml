@@ -1,0 +1,15 @@
+one:
+  follower: rails
+  followed: lana
+
+two:
+  follower: rails
+  followed: malory
+
+three:
+  follower: lana
+  followed: rails
+
+four:
+  follower: archer
+  followed: rails
